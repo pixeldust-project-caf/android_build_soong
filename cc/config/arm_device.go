@@ -144,31 +144,6 @@ const (
 )
 
 func init() {
-	android.RegisterArchFeatures(android.Arm,
-		"neon")
-
-	android.RegisterArchVariants(android.Arm,
-		"armv7-a",
-		"armv7-a-neon",
-		"armv8-a",
-		"cortex-a7",
-		"cortex-a8",
-		"cortex-a9",
-		"cortex-a15",
-		"cortex-a53",
-		"cortex-a53-a57",
-		"cortex-a55",
-		"cortex-a73",
-		"cortex-a75",
-		"krait",
-		"kryo",
-		"exynos-m1",
-		"exynos-m2",
-		"denver")
-
-	android.RegisterArchVariantFeatures(android.Arm, "armv7-a-neon", "neon")
-	android.RegisterArchVariantFeatures(android.Arm, "armv8-a", "neon")
-
 	// Krait and Kryo targets are not supported by GCC, but are supported by Clang,
 	// so override the definitions when building modules with Clang.
 	replaceFirst(armClangCpuVariantCflags["krait"], "-mcpu=cortex-a15", "-mcpu=krait")
