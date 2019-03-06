@@ -171,12 +171,9 @@ func (props *PgoProperties) addProfileUseFlags(ctx ModuleContext, flags Flags) F
 		profileUseFlags := props.profileUseFlags(ctx, profileFilePath.String())
 
 		flags.CFlags = append(flags.CFlags, profileUseFlags...)
-		flags.LdFlags = append(flags.LdFlags, profileUseFlags...)
 
-		// Update CFlagsDeps and LdFlagsDeps so the module is rebuilt
-		// if profileFile gets updated
+		// Update CFlagsDeps so the module is rebuilt if profileFile gets updated
 		flags.CFlagsDeps = append(flags.CFlagsDeps, profileFilePath)
-		flags.LdFlagsDeps = append(flags.LdFlagsDeps, profileFilePath)
 	}
 	return flags
 }
