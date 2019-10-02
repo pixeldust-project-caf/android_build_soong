@@ -211,7 +211,7 @@ func dexpreoptCommand(ctx android.PathContext, global GlobalConfig, module Modul
 	odexPath := module.BuildPath.InSameDir(ctx, "oat", arch.String(), pathtools.ReplaceExtension(base, "odex"))
 	odexInstallPath := toOdexPath(module.DexLocation)
 	if odexOnSystemOther(module, global) {
-		odexInstallPath = strings.Replace(odexInstallPath, SystemPartition, SystemOtherPartition, 1)
+		odexInstallPath = filepath.Join(SystemOtherPartition, odexInstallPath)
 	}
 
 	vdexPath := odexPath.ReplaceExtension(ctx, "vdex")
@@ -541,7 +541,8 @@ func OdexOnSystemOtherByName(name string, dexLocation string, global GlobalConfi
 	}
 
 	for _, f := range global.PatternsOnSystemOther {
-		if makefileMatch(filepath.Join(SystemPartition, f), dexLocation) {
+		// See comment of SYSTEM_OTHER_ODEX_FILTER for details on the matching.
+		if makefileMatch("/"+f, dexLocation) || makefileMatch(filepath.Join(SystemPartition, f), dexLocation) {
 			return true
 		}
 	}
