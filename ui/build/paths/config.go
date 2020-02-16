@@ -124,18 +124,21 @@ var Configuration = map[string]PathConfig{
 	"zip":      Allowed,
 	"zipinfo":  Allowed,
 
+	// Allow our custom toolchain commands
+	"aarch64-linux-gnu-as":          Allowed,
+	"aarch64-linux-gnu-ld":          Allowed,
+	"dtc":                           Allowed,
+	"ld":                            Allowed,
+	"mkdtimg":                       Allowed,
+
 	// Host toolchain is removed. In-tree toolchain should be used instead.
 	// GCC also can't find cc1 with this implementation.
-	"ar":         Forbidden,
 	"as":         Forbidden,
 	"cc":         Forbidden,
 	"clang":      Forbidden,
 	"clang++":    Forbidden,
-	"gcc":        Forbidden,
 	"g++":        Forbidden,
-	"ld":         Forbidden,
 	"ld.bfd":     Forbidden,
-	"ld.gold":    Forbidden,
 	"pkg-config": Forbidden,
 
 	// On Linux we'll use the toybox versions of these instead.
