@@ -347,7 +347,7 @@ type ModuleContextIntf interface {
 	isNDKStubLibrary() bool
 	useClangLld(actx ModuleContext) bool
 	isForPlatform() bool
-	apexName() string
+	apexVariationName() string
 	apexSdkVersion() int
 	hasStubsVariants() bool
 	isStubs() bool
@@ -1197,8 +1197,8 @@ func (ctx *moduleContextImpl) isForPlatform() bool {
 	return ctx.mod.IsForPlatform()
 }
 
-func (ctx *moduleContextImpl) apexName() string {
-	return ctx.mod.ApexName()
+func (ctx *moduleContextImpl) apexVariationName() string {
+	return ctx.mod.ApexVariationName()
 }
 
 func (ctx *moduleContextImpl) apexSdkVersion() int {
@@ -2288,7 +2288,7 @@ func (c *Module) depsToPaths(ctx android.ModuleContext) PathDeps {
 			if ccDep.CcLibrary() && !depIsStatic {
 				depIsStubs := ccDep.BuildStubs()
 				depHasStubs := VersionVariantAvailable(c) && ccDep.HasStubsVariants()
-				depInSameApex := android.DirectlyInApex(c.ApexName(), depName)
+				depInSameApex := android.DirectlyInApex(c.ApexVariationName(), depName)
 				depInPlatform := !android.DirectlyInAnyApex(ctx, depName)
 
 				var useThisDep bool
@@ -2344,7 +2344,7 @@ func (c *Module) depsToPaths(ctx android.ModuleContext) PathDeps {
 					// by default, use current version of LLNDK
 					versionToUse := ""
 					versions := stubsVersionsFor(ctx.Config())[depName]
-					if c.ApexName() != "" && len(versions) > 0 {
+					if c.ApexVariationName() != "" && len(versions) > 0 {
 						// if this is for use_vendor apex && dep has stubsVersions
 						// apply the same rule of apex sdk enforcement to choose right version
 						var err error
