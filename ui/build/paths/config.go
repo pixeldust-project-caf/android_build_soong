@@ -148,6 +148,7 @@ var Configuration = map[string]PathConfig{
 	"ls":        LinuxOnlyPrebuilt,
 	"md5sum":    LinuxOnlyPrebuilt,
 	// TODO (b/121282416): switch back to LinuxOnlyPrebuilt when build is hermetic
+	"make":      Log,
 	"mkdir":     Log,
 	"mktemp":    LinuxOnlyPrebuilt,
 	"mv":        LinuxOnlyPrebuilt,
