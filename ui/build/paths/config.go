@@ -114,9 +114,10 @@ var Configuration = map[string]PathConfig{
 	"zip":     Allowed,
 
 	// Kernel tools
+	"curl":    Allowed,
 	"dtc":     Allowed,
 	"mkdtimg": Allowed,
-	"make": Allowed,
+	"make":    Allowed,
 	"arm-linux-androidkernel-as":    Allowed,
 	"arm-linux-androidkernel-ld":    Allowed,
 	"aarch64-linux-android-ar":      Allowed,
