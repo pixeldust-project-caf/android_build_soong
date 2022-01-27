@@ -168,13 +168,13 @@ type BaseLinkerProperties struct {
 			// the ramdisk variant of the C/C++ module.
 			Exclude_static_libs []string
 
-			// list of header libs that should not be used to build the ramdisk variant
-			// of the C/C++ module.
-			Exclude_header_libs []string
-
 			// list of runtime libs that should not be installed along with the
 			// ramdisk variant of the C/C++ module.
 			Exclude_runtime_libs []string
+
+			// list of header libs that should not be used to build the ramdisk variant
+			// of the C/C++ module.
+			Exclude_header_libs []string
 		}
 		Vendor_ramdisk struct {
 			// list of shared libs that should not be used to build
