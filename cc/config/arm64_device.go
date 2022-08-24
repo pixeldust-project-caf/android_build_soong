@@ -33,6 +33,8 @@ var (
 		},
 		"armv8-a-branchprot": []string{
 			"-march=armv8-a",
+			// Disable BTI until drm vendors stop using OS libraries as sources
+			// of gadgets (https://issuetracker.google.com/216395195).
 			"-mbranch-protection=standard",
 		},
 		"armv8-2a": []string{
