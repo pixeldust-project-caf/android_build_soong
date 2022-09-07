@@ -74,12 +74,6 @@ func GetConfig(name string) PathConfig {
 }
 
 var Configuration = map[string]PathConfig{
-	"aarch64-linux-android-ar":      Log,
-	"aarch64-linux-android-gcc":     Log,
-	"aarch64-linux-android-ld":      Log,
-	"aarch64-linux-android-nm":      Log,
-	"aarch64-linux-android-objcopy": Log,
-	"aarch64-linux-android-objdump": Log,
 	"bash":    Allowed,
 	"bison":   Allowed,
 	"brotli":  Allowed,
@@ -228,7 +222,6 @@ var Configuration = map[string]PathConfig{
 	"cp":        Log,
 	"comm":      LinuxOnlyPrebuilt,
 	"cut":       LinuxOnlyPrebuilt,
-	"date":      LinuxOnlyPrebuilt,
 	// TODO (b/121282416): switch back to LinuxOnlyPrebuilt when build is hermetic
 	"dirname":   Log,
 	"du":        LinuxOnlyPrebuilt,
@@ -236,7 +229,6 @@ var Configuration = map[string]PathConfig{
 	"egrep":     LinuxOnlyPrebuilt,
 	"env":       LinuxOnlyPrebuilt,
 	"getconf":   LinuxOnlyPrebuilt,
-	"grep":      LinuxOnlyPrebuilt,
 	"head":      LinuxOnlyPrebuilt,
 	"hostname":  LinuxOnlyPrebuilt,
 	"id":        LinuxOnlyPrebuilt,
@@ -270,7 +262,6 @@ var Configuration = map[string]PathConfig{
 	"stat":      LinuxOnlyPrebuilt,
 	// TODO (b/121282416): switch back to LinuxOnlyPrebuilt when build is hermetic
 	"tail":      Log,
-	"tar":       LinuxOnlyPrebuilt,
 	"tee":       LinuxOnlyPrebuilt,
 	"timeout":   LinuxOnlyPrebuilt,
 	// TODO (b/121282416): switch back to LinuxOnlyPrebuilt when build is hermetic
