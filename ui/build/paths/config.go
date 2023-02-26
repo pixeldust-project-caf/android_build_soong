@@ -128,6 +128,7 @@ var Configuration = map[string]PathConfig{
 	"resize2fs": Allowed,
 
 	"dtc":     Allowed,
+	"lz4c":    Allowed,
 	"make":    Allowed,
 	"mkdtimg": Allowed,
 
