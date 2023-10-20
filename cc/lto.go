@@ -144,6 +144,25 @@ func (lto *lto) flags(ctx BaseModuleContext, flags Flags) Flags {
 			flags.Local.LdFlags = append(flags.Local.LdFlags,
 				"-Wl,-plugin-opt,-import-instr-limit=5")
 		}
+		
+        // Reduce the inlining threshold for a better balance of binary size and
+        // performance.
+        additionalLdFlags := []string{
+            "-Wl,-mllvm,-inline-threshold=600",
+            "-Wl,-mllvm,-inlinehint-threshold=550",
+            "-Wl,-mllvm,-unroll-threshold=800",
+            "-Wl,-mllvm,-polly",
+            "-Wl,-mllvm,-polly-ast-use-context",
+            "-Wl,-mllvm,-polly-invariant-load-hoisting",
+            "-Wl,-mllvm,-polly-vectorizer=stripmine",
+            "-Wl,-mllvm,-polly-loopfusion-greedy=1",
+            "-Wl,-mllvm,-polly-scheduling-chunksize=1",
+            "-Wl,-plugin-opt,-import-instr-limit=40",
+            "-Wl,-plugin-opt=O3",
+            "-Wl,-O3",
+            "-Wl,--gc-sections",
+        }
+        flags.Local.LdFlags = append(flags.Local.LdFlags, additionalLdFlags...)
 	}
 	return flags
 }
